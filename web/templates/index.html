@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proteus-SMC Demo</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header>
+    <span class="logo">&#128274; Proteus-SMC</span>
+    <span class="fp-label">fingerprint</span>
+    <code id="fingerprint">connecting…</code>
+  </header>
+
+  <!-- Encrypted wire console -->
+  <div class="console">
+    <div class="console-bar">
+      <span class="console-title">encrypted wire &mdash; SMCCipher / X25519</span>
+    </div>
+    <div class="console-feed" id="ct-feed">
+      <span class="console-empty">No traffic yet — start chatting below.</span>
+    </div>
+  </div>
+
+  <!-- Chat panels -->
+  <main>
+
+    <section class="panel panel-alice">
+      <div class="panel-header">
+        <span class="avatar alice-avatar">A</span>
+        <span class="panel-name">Alice</span>
+        <span class="role-tag">initiator</span>
+      </div>
+      <div class="messages" id="alice-messages"></div>
+      <div class="input-row">
+        <input type="text" id="alice-input" placeholder="Alice says…" autocomplete="off" />
+        <button onclick="sendMessage('alice')">Send</button>
+      </div>
+    </section>
+
+    <section class="panel panel-bob">
+      <div class="panel-header">
+        <span class="avatar bob-avatar">B</span>
+        <span class="panel-name">Bob</span>
+        <span class="role-tag">responder</span>
+      </div>
+      <div class="messages" id="bob-messages"></div>
+      <div class="input-row">
+        <input type="text" id="bob-input" placeholder="Bob says…" autocomplete="off" />
+        <button onclick="sendMessage('bob')">Send</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Loading overlay -->
+  <div id="overlay">
+    <div class="spinner"></div>
+    <p>Performing X25519 handshake…</p>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

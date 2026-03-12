@@ -1,0 +1,4 @@
+cryptography>=41.0.0
+flask>=3.0
+flask-socketio>=5.3
+eventlet>=0.35
