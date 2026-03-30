@@ -22,6 +22,26 @@ function addBubble(container, text, cls) {
   container.scrollTop = container.scrollHeight;
 }
 
+/**
+ * Split a SMCCipher hex string into coloured <span> segments.
+ * Format: MAGIC(3) VERSION(1) N_BLOCKS(4) CHECKSUM(4) IV(16) ROUND_META(2*n) CT
+ * All sizes are in bytes; each byte = 2 hex chars.
+ */
+function colorizeHex(h) {
+  if (h.length < 56) return `<span class="ch-ct">${h}</span>`;
+  const nBlocks = parseInt(h.slice(8, 16), 16);
+  const metaEnd = 56 + nBlocks * 4;          // 56 = (3+1+4+4+16)*2
+  return (
+    `<span class="ch-magic">${h.slice(0, 6)}</span>`      +  // 3 B
+    `<span class="ch-version">${h.slice(6, 8)}</span>`    +  // 1 B
+    `<span class="ch-nblocks">${h.slice(8, 16)}</span>`   +  // 4 B
+    `<span class="ch-checksum">${h.slice(16, 24)}</span>` +  // 4 B
+    `<span class="ch-iv">${h.slice(24, 56)}</span>`       +  // 16 B
+    `<span class="ch-meta">${h.slice(56, metaEnd)}</span>` + // 2*n B
+    `<span class="ch-ct">${h.slice(metaEnd)}</span>`         // rest
+  );
+}
+
 /** Append a line to the console. */
 function addCiphertext(from, hexStr) {
   // Remove the placeholder on first entry
@@ -36,7 +56,7 @@ function addCiphertext(from, hexStr) {
   line.innerHTML =
     `<span class="cl-time">${time}</span>` +
     `<span class="cl-dir ${from}">${dir}</span>` +
-    `<span class="cl-hex">${hexStr}</span>`;
+    `<span class="cl-hex">${colorizeHex(hexStr)}</span>`;
 
   ctFeed.appendChild(line);
   ctFeed.scrollTop = ctFeed.scrollHeight;

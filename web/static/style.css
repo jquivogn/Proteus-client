@@ -134,10 +134,42 @@ header {
 .cl-dir.bob   { color: #10b981; }
 
 .cl-hex {
-  color: var(--ct);
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: 0.03em;
+}
+
+/* ── Hex colorization — one colour per header field ─────────────────────── */
+.ch-magic    { color: #f59e0b; }   /* amber  — magic "SMC"        */
+.ch-version  { color: #a78bfa; }   /* violet — version            */
+.ch-nblocks  { color: #38bdf8; }   /* sky    — n_blocks           */
+.ch-checksum { color: #f87171; }   /* red    — checksum           */
+.ch-iv       { color: #fb923c; }   /* orange — IV                 */
+.ch-meta     { color: #a3e635; }   /* lime   — round_meta         */
+.ch-ct       { color: #4ade80; }   /* green  — encrypted blocks   */
+
+/* ── Legend ──────────────────────────────────────────────────────────────── */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: monospace;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 /* ── Main layout — two panels side by side ───────────────────────────────── */

@@ -1,0 +1,9 @@
+services:
+  proteus-client:
+    build:
+      context: ..
+      dockerfile: Proteus-client/Dockerfile
+    container_name: proteus-client
+    restart: unless-stopped
+    ports:
+      - "5042:5042"

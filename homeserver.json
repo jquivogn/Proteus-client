@@ -1,0 +1,9 @@
+{
+  "name": "Proteus Client",
+  "description": "Chat chiffré point-à-point via protocole SMC (interface web)",
+  "url": "http://192.168.1.178:5042",
+  "icon": "🔐",
+  "start_command": "docker compose up -d",
+  "stop_command": "docker compose down",
+  "restart_command": "docker compose restart"
+}
