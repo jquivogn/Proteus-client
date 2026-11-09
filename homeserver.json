@@ -5,5 +5,6 @@
   "icon": "🔐",
   "start_command": "docker compose up -d",
   "stop_command": "docker compose down",
-  "restart_command": "docker compose restart"
+  "restart_command": "docker compose restart",
+  "rebuild_command": "docker compose up -d --build"
 }
